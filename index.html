@@ -216,29 +216,14 @@ footer a { color: var(--ink-2); }
 .access { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 48px; align-items: start; }
 .access .intro { margin-bottom: 0; }
 .signup { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 26px; display: grid; gap: 20px; }
-.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .field { display: grid; gap: 6px; min-width: 0; }
-.field > label, .field > legend { font-size: 14px; font-weight: 600; color: var(--ink); padding: 0; }
-.field .hint { font-size: 13px; color: var(--ink-3); font-weight: 400; }
-fieldset.field { border: 0; margin: 0; padding: 0; }
-.signup input[type=text], .signup input[type=email], .signup select, .signup textarea {
+.field > label { font-size: 14px; font-weight: 600; color: var(--ink); }
+.signup input[type=email] {
   width: 100%; font: 400 16px/1.4 var(--body); color: var(--ink); background: var(--paper);
   border: 1.5px solid var(--rule); border-radius: 8px; padding: 10px 12px;
 }
-.signup textarea { min-height: 84px; resize: vertical; }
 .signup [aria-invalid="true"] { border-color: var(--refuse); }
-.signup input:focus, .signup select:focus, .signup textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-wash); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
-.chip { position: relative; }
-.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.chip span {
-  display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px;
-  border: 1.5px solid var(--rule); font-size: 14px; color: var(--ink-2); background: var(--paper);
-}
-.chip span::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink-3); }
-.chip input:checked + span { border-color: var(--teal); color: var(--ink); background: var(--teal-wash); }
-.chip input:checked + span::before { background: var(--teal); border-color: var(--teal); }
-.chip input:focus-visible + span { outline: 2px solid var(--teal); outline-offset: 2px; }
+.signup input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-wash); }
 .send { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .send .fine { font-size: 13px; color: var(--ink-3); max-width: 38ch; }
 .send button { cursor: pointer; }
@@ -248,7 +233,6 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 .form-msg.err { background: var(--refuse-wash); color: var(--ink); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 860px) { .access { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 560px) { .row2 { grid-template-columns: minmax(0, 1fr); } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -440,55 +424,17 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
     <div class="intro">
       <p class="label">Early access</p>
       <h2 id="access-title">Put an agent on your deck, inside guarantees you set</h2>
-      <p>SIGIL is pre-1.0. We are looking for labs that run liquid handlers or cloud-lab protocols and want to let an agent plan the work. Tell us what you run and we will be in touch.</p>
+      <p>SIGIL is pre-1.0. We are looking for labs that run liquid handlers or cloud-lab protocols and want to let an agent plan the work. Leave your email and we will be in touch.</p>
     </div>
     <form class="signup" id="signup" action="https://formspree.io/f/mzedlalj" method="POST">
-      <div class="row2">
-        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label for="f-org">Lab or organization</label><input id="f-org" name="organization" type="text" autocomplete="organization" required></div>
-        <div class="field"><label for="f-role">Your role</label>
-          <select id="f-role" name="role" required>
-            <option value="">Choose one</option>
-            <option>Scientist or PI</option>
-            <option>Lab automation engineer</option>
-            <option>AI or ML researcher</option>
-            <option>Biosafety or biosecurity</option>
-            <option>User facility or core lab staff</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <fieldset class="field">
-        <legend>What runs in your lab? <span class="hint">Pick any</span></legend>
-        <div class="chips">
-          <label class="chip"><input id="f-p-ot" type="checkbox" name="platforms" value="Opentrons"><span>Opentrons</span></label>
-          <label class="chip"><input id="f-p-ham" type="checkbox" name="platforms" value="Hamilton"><span>Hamilton</span></label>
-          <label class="chip"><input id="f-p-tec" type="checkbox" name="platforms" value="Tecan"><span>Tecan</span></label>
-          <label class="chip"><input id="f-p-bek" type="checkbox" name="platforms" value="Beckman Biomek"><span>Beckman Biomek</span></label>
-          <label class="chip"><input id="f-p-cloud" type="checkbox" name="platforms" value="Cloud lab"><span>Cloud lab</span></label>
-          <label class="chip"><input id="f-p-plr" type="checkbox" name="platforms" value="PyLabRobot"><span>PyLabRobot</span></label>
-          <label class="chip"><input id="f-p-other" type="checkbox" name="platforms" value="Other"><span>Something else</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>What are you after?</legend>
-        <div class="chips">
-          <label class="chip"><input id="f-i-pilot" type="radio" name="interest" value="Pilot in our lab" required><span>A pilot in our lab</span></label>
-          <label class="chip"><input id="f-i-collab" type="radio" name="interest" value="Research collaboration"><span>A research collaboration</span></label>
-          <label class="chip"><input id="f-i-updates" type="radio" name="interest" value="Updates only"><span>Updates only</span></label>
-        </div>
-      </fieldset>
       <div class="field">
-        <label for="f-notes">What would you let an agent do, and what must it never do? <span class="hint">Optional</span></label>
-        <textarea id="f-notes" name="notes" placeholder="For example: plan qPCR titrations on our STAR, never exceed 2 mL of enzyme a week, never order oligos without screening."></textarea>
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
       </div>
       <div class="hp" aria-hidden="true"><label for="f-hp">Leave this empty</label><input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
       <div class="form-msg" id="form-msg" role="status" hidden></div>
       <div class="send">
-        <p class="fine">We use these details only to contact you about SIGIL.</p>
+        <p class="fine">We use your email only to contact you about SIGIL.</p>
         <button class="btn primary" id="f-send" type="submit">Request early access</button>
       </div>
     </form>
@@ -596,20 +542,13 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 
   const say = (kind, text) => { msg.hidden = false; msg.className = "form-msg " + kind; msg.textContent = text; };
   const clearInvalid = () => form.querySelectorAll("[aria-invalid]").forEach((n) => n.removeAttribute("aria-invalid"));
-  const fieldLabel = { name: "Name", email: "Work email", organization: "Lab or organization", role: "Your role", interest: "What you are after" };
+  const fieldLabel = { email: "Email" };
 
   function payload() {
     const f = form.elements;
-    const platforms = [...form.querySelectorAll('input[name="platforms"]:checked')].map((c) => c.value);
     return {
-      name: f.name.value.trim(),
       email: f.email.value.trim(),
-      organization: f.organization.value.trim(),
-      role: f.role.value,
-      platforms: platforms.join(", ") || "None selected",
-      interest: form.querySelector('input[name="interest"]:checked')?.value || "",
-      notes: f.notes.value.trim(),
-      _subject: `SIGIL early access: ${f.organization.value.trim()}`,
+      _subject: "SIGIL early access",
       _gotcha: f._gotcha.value,
     };
   }
@@ -620,11 +559,11 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
     if (!form.checkValidity()) {
       const bad = [...form.querySelectorAll(":invalid")];
       bad.forEach((n) => n.setAttribute("aria-invalid", "true"));
-      say("err", "Please fill in your name, work email, organization, role, and what you are after.");
+      say("err", "Please enter a valid email address.");
       bad[0]?.focus();
       return;
     }
-    if (!ENDPOINT) { say("ok", "This form is not connected yet. Your answers were checked but not sent."); return; }
+    if (!ENDPOINT) { say("ok", "This form is not connected yet. Your email was checked but not sent."); return; }
     const email = form.elements.email.value.trim();
     send.disabled = true;
     try {
